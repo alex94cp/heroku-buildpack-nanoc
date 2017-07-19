@@ -1,0 +1,15 @@
+#!/bin/sh
+# bin/detect <build-dir>
+
+BUILD_DIR=$1
+
+if [ -f "$BUILD_DIR/nanoc.yaml" -o -f "$BUILD_DIR/config.yaml" ]; then
+	for file in Rules Rules.rb rules rules.rb; do
+		if [ -f "$BUILD_DIR/$file" ]; then
+			echo nanoc
+			exit 0
+		fi
+	done
+fi
+
+exit 1
